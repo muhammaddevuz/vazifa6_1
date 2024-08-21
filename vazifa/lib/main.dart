@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vazifa/signin_bloc/signin_bloc.dart';
-import 'package:vazifa/signup_bloc/signup_bloc.dart';
+import 'package:vazifa/bloc/signin_bloc/signin_bloc.dart';
+import 'package:vazifa/bloc/signup_bloc/signup_bloc.dart';
 import 'package:vazifa/ui/screens/signin_screen.dart';
 
 void main(List<String> args) {

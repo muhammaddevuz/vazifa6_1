@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vazifa/signin_bloc/signin_bloc.dart';
-import 'package:vazifa/signin_bloc/signin_event.dart';
+import 'package:vazifa/bloc/signin_bloc/signin_bloc.dart';
+import 'package:vazifa/bloc/signin_bloc/signin_event.dart';
 import 'package:vazifa/ui/screens/home_screen.dart';
 import 'package:vazifa/ui/screens/signup_screen.dart';
-
+// signin_screen.dart
 class SigninScreen extends StatelessWidget {
   SigninScreen({super.key});
 
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   @override
@@ -36,9 +36,9 @@ class SigninScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextField(
-                    controller: emailController,
+                    controller: phoneController,
                     decoration: InputDecoration(
-                      labelText: 'Email Address',
+                      labelText: 'Phone Number',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
                       ),
@@ -59,7 +59,7 @@ class SigninScreen extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       context.read<SignInBloc>().add(SignInSubmitted(
-                            email: emailController.text,
+                            phone: phoneController.text,
                             password: passwordController.text,
                           ));
                     },

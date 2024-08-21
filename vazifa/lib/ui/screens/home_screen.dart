@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vazifa/signin_bloc/signin_bloc.dart';
-import 'package:vazifa/signin_bloc/signin_event.dart';
+import 'package:vazifa/bloc/signin_bloc/signin_bloc.dart';
+import 'package:vazifa/bloc/signin_bloc/signin_event.dart';
 import 'package:vazifa/ui/screens/signin_screen.dart';
 
 class HomeScreen extends StatefulWidget {

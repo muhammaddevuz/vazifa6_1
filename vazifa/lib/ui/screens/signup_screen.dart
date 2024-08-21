@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vazifa/signup_bloc/signup_bloc.dart';
-import 'package:vazifa/ui/screens/signup_2_screen.dart';
+import 'package:vazifa/bloc/signup_bloc/signup_bloc.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
 
   final TextEditingController phoneController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordConfirmationController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +21,7 @@ class SignupScreen extends StatelessWidget {
               if (state is SignUpError) {
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text(state.error)));
-              } else if (state is SignUpLoaded) {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const Signup2Screen()));
-              }
+              } else if (state is SignUpLoaded) {}
             },
             child: BlocBuilder<SignUpBloc, SignUpState>(
               builder: (context, state) {
@@ -47,9 +43,9 @@ class SignupScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
                     TextField(
-                      controller: emailController,
+                      controller: nameController,
                       decoration: InputDecoration(
-                        labelText: 'Email Address',
+                        labelText: 'Name',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
@@ -67,15 +63,33 @@ class SignupScreen extends StatelessWidget {
                       obscureText: true,
                     ),
                     SizedBox(height: 20),
+                    TextField(
+                      controller: passwordConfirmationController,
+                      decoration: InputDecoration(
+                        labelText: 'Password Confirmation',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                      ),
+                      obscureText: true,
+                    ),
+                    SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
-                        context.read<SignUpBloc>().add(SignUpSubmitted(
-                              phoneNumber: phoneController.text,
-                              email: emailController.text,
-                              password: passwordController.text,
-                            ));
+                        context.read<SignUpBloc>().add(
+                              SignUpSubmitted(
+                                  phone: phoneController.text,
+                                  name: nameController.text,
+                                  password: passwordController.text,
+                                  password_confirmation:
+                                      passwordConfirmationController.text),
+                            );
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignupScreen()));
                       },
-                      child: const Text('Next Step'),
+                      child: const Text('SignUp'),
                     ),
                   ],
                 );
